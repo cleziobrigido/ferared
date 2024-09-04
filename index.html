@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correção de Redação</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Correção de Redação</h1>
+        
+        <!-- Adiciona funcionalidade de upload de PDF -->
+        <label for="uploadPDF">Carregar redação em PDF:</label>
+        <input type="file" id="uploadPDF" accept=".pdf" onchange="lerPDF()">
+        
+        <textarea id="redacao" placeholder="Digite sua redação aqui..."></textarea>
+        <button onclick="corrigirRedacao()">Corrigir Redação</button>
+
+        <div class="resultado">
+            <h2>Resultados da Correção</h2>
+            <div class="competencias-container">
+                <div class="competencia" id="competencia1">
+                    <h3>Competência 1: Norma Culta</h3>
+                    <p id="notaCompetencia1">Nota: 0</p>
+                    <ul id="melhoriasCompetencia1"></ul>
+                </div>
+                <div class="competencia" id="competencia2">
+                    <h3>Competência 2: Compreensão da Proposta</h3>
+                    <p id="notaCompetencia2">Nota: 0</p>
+                    <ul id="melhoriasCompetencia2"></ul>
+                </div>
+                <div class="competencia" id="competencia3">
+                    <h3>Competência 3: Seleção e Organização</h3>
+                    <p id="notaCompetencia3">Nota: 0</p>
+                    <ul id="melhoriasCompetencia3"></ul>
+                </div>
+                <div class="competencia" id="competencia4">
+                    <h3>Competência 4: Mecanismos Linguísticos</h3>
+                    <p id="notaCompetencia4">Nota: 0</p>
+                    <ul id="melhoriasCompetencia4"></ul>
+                </div>
+                <div class="competencia" id="competencia5">
+                    <h3>Competência 5: Proposta de Intervenção</h3>
+                    <p id="notaCompetencia5">Nota: 0</p>
+                    <ul id="melhoriasCompetencia5"></ul>
+                </div>
+            </div>
+            <p id="notaFinal">Nota Final: 0</p>
+        </div>
+    </div>
+
+    <!-- Script para leitura de PDF e correção de redação -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
