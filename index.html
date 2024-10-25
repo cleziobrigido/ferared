@@ -1,57 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FeraRed</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do Aluno</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>FeraRed</h1>
-        
-        <!-- Adiciona funcionalidade de upload de PDF -->
-        <label for="uploadPDF">Carregar redação em PDF:</label>
-        <input type="file" id="uploadPDF" accept=".pdf" onchange="lerPDF()">
-        
-        <textarea id="redacao" placeholder="Digite sua redação aqui..."></textarea>
-        <button onclick="corrigirRedacao()">Corrigir Redação</button>
+  <div class="top-bar">
+    <h2>Painel do Aluno</h2>
+  </div>
 
-        <div class="resultado">
-            <h2>Resultados da Correção</h2>
-            <div class="competencias-container">
-                <div class="competencia" id="competencia1">
-                    <h3>Competência 1: Norma Culta</h3>
-                    <p id="notaCompetencia1">Nota: 0</p>
-                    <ul id="melhoriasCompetencia1"></ul>
-                </div>
-                <div class="competencia" id="competencia2">
-                    <h3>Competência 2: Compreensão da Proposta</h3>
-                    <p id="notaCompetencia2">Nota: 0</p>
-                    <ul id="melhoriasCompetencia2"></ul>
-                </div>
-                <div class="competencia" id="competencia3">
-                    <h3>Competência 3: Seleção e Organização</h3>
-                    <p id="notaCompetencia3">Nota: 0</p>
-                    <ul id="melhoriasCompetencia3"></ul>
-                </div>
-                <div class="competencia" id="competencia4">
-                    <h3>Competência 4: Mecanismos Linguísticos</h3>
-                    <p id="notaCompetencia4">Nota: 0</p>
-                    <ul id="melhoriasCompetencia4"></ul>
-                </div>
-                <div class="competencia" id="competencia5">
-                    <h3>Competência 5: Proposta de Intervenção</h3>
-                    <p id="notaCompetencia5">Nota: 0</p>
-                    <ul id="melhoriasCompetencia5"></ul>
-                </div>
-            </div>
-            <p id="notaFinal">Nota Final: 0</p>
-        </div>
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo">
+        <h2>Logo</h2>
+      </div>
+      <ul class="menu">
+        <li><a href="index.html">Envie sua Redação</a></li>
+        <li><a href="minhas-redacoes.html">Minhas Redações</a></li>
+        <li><a href="#">Feedbacks</a></li>
+        <li><a href="#">Evolução</a></li>
+        <li><a href="#">Temas</a></li>
+      </ul>
     </div>
 
-    <!-- Script para leitura de PDF e correção de redação -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-    <script src="script.js"></script>
+    <div class="content">
+      <div id="upload-section">
+        <h2>Envie sua Redação</h2>
+        <label class="custom-file-upload">
+          <input type="file" id="redacaoFile" accept=".pdf">
+          <i class="fa fa-cloud-upload"></i> Escolher PDF
+        </label>
+        <button onclick="enviarRedacao()">Enviar Redação</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function enviarRedacao() {
+      const fileInput = document.getElementById('redacaoFile');
+      if (fileInput.files.length === 0) {
+        alert('Por favor, escolha um arquivo PDF.');
+        return;
+      }
+
+      // Simulação da correção da redação
+      const redacaoNome = `Redação ${new Date().toLocaleString()}`;
+      const nota = Math.floor(Math.random() * 1000);
+      const pontosMelhoria = "Melhorar coesão entre os parágrafos."; // Simulação de correção
+
+      // Armazenar redação (simulação)
+      const redacoesCorrigidas = JSON.parse(localStorage.getItem('redacoes')) || [];
+      redacoesCorrigidas.push({ nome: redacaoNome, nota, pontosMelhoria });
+      localStorage.setItem('redacoes', JSON.stringify(redacoesCorrigidas));
+
+      alert('Redação enviada e corrigida com sucesso!');
+
+      // Redirecionar para "Minhas Redações"
+      window.location.href = 'minhas-redacoes.html';
+    }
+  </script>
 </body>
 </html>

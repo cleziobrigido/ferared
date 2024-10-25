@@ -1,111 +1,127 @@
-/* Estilos básicos para a página */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Reset básico */
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #e0f7fa; /* Azul claro de fundo */
-}
-
-/* Container principal */
-.container {
-    max-width: 900px;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+  }
+  
+  /* Barra superior fixa com o Painel do Aluno */
+  .top-bar {
     width: 100%;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-align: center; /* Centraliza o texto */
-}
-
-/* Estilo para o título */
-h1 {
-    font-size: 24px;
-    color: #004d40; /* Azul escuro */
-    margin-bottom: 20px;
-}
-
-/* Estilo para o campo de redação */
-textarea {
-    width: calc(100% - 40px); /* Ajusta a largura do textarea */
-    height: 200px;
-    margin: 0 auto 20px;
-    padding: 15px;
-    border: 2px solid #004d40; /* Azul escuro */
-    border-radius: 8px;
-    font-size: 16px;
-    resize: vertical;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Estilo para o botão de correção */
-button {
-    background-color: #004d40; /* Azul escuro */
+    background-color: #1e3a5f; /* Azul escuro */
     color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-button:hover {
-    background-color: #003d33; /* Azul mais escuro */
-    transform: scale(1.05); /* Efeito de zoom */
-}
-
-/* Estilo para o resultado */
-.resultado {
-    margin-top: 30px;
-}
-
-/* Estilo para cada competência */
-.competencias-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; /* Centraliza as competências */
-}
-
-.competencia {
-    flex: 1 1 calc(30% - 20px); /* Ajusta a largura das competências */
     padding: 15px;
-    background-color: #004d40; /* Azul escuro */
-    color: #ffffff;
-    border-radius: 8px;
-    box-sizing: border-box;
-    position: relative; /* Necessário para posicionar o feedback */
-}
-
-.competencia h3 {
-    margin-top: 0;
-    font-size: 20px;
-}
-
-.competencia p {
-    margin: 10px 0;
-    font-size: 16px;
-}
-
-.competencia ul {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  /* Container geral */
+  .container {
+    display: flex;
+    height: 100vh;
+    padding-top: 60px;
+  }
+  
+  /* Barra lateral */
+  .sidebar {
+    width: 300px;
+    background-color: #1e3a5f;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar .logo {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .sidebar .menu {
     list-style-type: none;
     padding: 0;
-    margin: 10px 0;
-}
-
-.competencia li {
-    margin-bottom: 10px;
-}
-
-/* Estilo para a nota final */
-#notaFinal {
-    margin-top: 30px;
+  }
+  
+  .sidebar .menu li {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    display: block;
+    background-color: rgba(54, 90, 139, 0.8);
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+  
+  .sidebar .menu li a:hover, .sidebar .menu li a.active {
+    background-color: #2b4a73;
+    transform: translateX(5px);
+  }
+  
+  /* Área de conteúdo */
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Lista de relatórios */
+  .report-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .report-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .report-item h3 {
     font-size: 22px;
-    font-weight: bold;
-    color: #004d40; /* Azul escuro */
-}
+    margin-bottom: 10px;
+  }
+  
+  .report-item p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1e3a5f;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .download-btn:hover {
+    background-color: #365a8b;
+  }
+  

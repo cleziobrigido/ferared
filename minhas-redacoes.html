@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Redações</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="top-bar">
+    <h2>Painel do Aluno - Minhas Redações</h2>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo">
+        <h2>Logo</h2>
+      </div>
+      <ul class="menu">
+        <li><a href="index.html">Envie sua Redação</a></li>
+        <li><a href="minhas-redacoes.html" class="active">Minhas Redações</a></li>
+        <li><a href="#">Feedbacks</a></li>
+        <li><a href="#">Evolução</a></li>
+        <li><a href="#">Temas</a></li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h2>Relatórios de Redações</h2>
+      <div class="report-list" id="report-list">
+        <!-- A lista de redações será preenchida aqui pelo JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { jsPDF } = window.jspdf;
+
+    // Função para carregar as redações do localStorage
+    function carregarRedacoes() {
+      const redacoesCorrigidas = JSON.parse(localStorage.getItem('redacoes')) || [];
+      const reportList = document.getElementById('report-list');
+      reportList.innerHTML = '';
+
+      redacoesCorrigidas.forEach((redacao, index) => {
+        const reportItem = document.createElement('div');
+        reportItem.classList.add('report-item');
+        reportItem.innerHTML = `
+          <h3>${redacao.nome}</h3>
+          <p><strong>Nota:</strong> ${redacao.nota}</p>
+          <p><strong>Pontos de Melhoria:</strong> ${redacao.pontosMelhoria}</p>
+          <button class="download-btn" onclick="gerarPDF('${redacao.nome}', ${redacao.nota}, '${redacao.pontosMelhoria}')">Ver PDF</button>
+        `;
+        reportList.appendChild(reportItem);
+      });
+    }
+
+    // Função para gerar o PDF
+    function gerarPDF(nome, nota, pontosMelhoria) {
+      const doc = new jsPDF();
+
+      doc.setFontSize(22);
+      doc.text('Redação Corrigida', 20, 20);
+      doc.setFontSize(16);
+      doc.text(`Nome: ${nome}`, 20, 40);
+      doc.text(`Nota: ${nota}`, 20, 50);
+      doc.text(`Pontos de Melhoria:`, 20, 60);
+      doc.setFontSize(12);
+      doc.text(pontosMelhoria, 20, 70);
+
+      doc.save(`${nome}.pdf`);
+    }
+
+    // Carregar as redações ao carregar a página
+    window.onload = carregarRedacoes;
+
+    // Função para armazenar a redação corrigida no localStorage
+    function armazenarRedacao(redacaoInfo) {
+      const redacoesCorrigidas = JSON.parse(localStorage.getItem('redacoes')) || [];
+      redacoesCorrigidas.push(redacaoInfo);
+      localStorage.setItem('redacoes', JSON.stringify(redacoesCorrigidas));
+    }
+  </script>
+</body>
+</html>
